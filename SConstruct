@@ -858,7 +858,7 @@ if nix:
         env.Append( CCFLAGS=["-Werror", "-pipe"] )
 
     env.Append( CPPDEFINES=["_FILE_OFFSET_BITS=64"] )
-    env.Append( CXXFLAGS=["-Wnon-virtual-dtor", "-Woverloaded-virtual"] )
+    env.Append( CXXFLAGS=["-Wnon-virtual-dtor", "-Woverloaded-virtual" ] )
     env.Append( LINKFLAGS=["-fPIC", "-pthread"] )
 
     # SERVER-9761: Ensure early detection of missing symbols in dependent libraries at program
@@ -1229,6 +1229,10 @@ def doConfigure(myenv):
         if not AddToCCFLAGSIfSupported(myenv, '-mmacosx-version-min=%s' % (min_version)):
             print( "Can't set minimum OS X version with this compiler" )
             Exit(1)
+
+    if darwin and using_clang():
+        env.Append( CXXFLAGS=["-stdlib=libstdc++"] )
+
 
     if has_option('libc++'):
         if not using_clang():
