@@ -716,7 +716,7 @@ if nix:
 
     env.Append( CPPDEFINES=["_FILE_OFFSET_BITS=64"] )
     env.Append( CXXFLAGS=["-Wnon-virtual-dtor", "-Woverloaded-virtual", "-stdlib=libstdc++"] )
-    env.Append( LINKFLAGS=["-fPIC", "-pthread",  "-rdynamic"] )
+    env.Append( LINKFLAGS=["-fPIC", "-pthread",  "-rdynamic", "-stdlib=libstdc++"] )
     env.Append( LIBS=[] )
 
     #make scons colorgcc friendly
